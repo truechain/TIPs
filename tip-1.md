@@ -1,7 +1,6 @@
-
 ---
 tip: 1
-title: Transaction gas fee paying agent mechanism
+title: transaction gas fee can be paid by third accout
 author: Yang LIU <hyangliu@gmail.com>
 created: 2019-01-11
 status: Draft
@@ -47,7 +46,7 @@ Here is the new form:
 
 ## Create
 
-When a user creates a new transaction, he can set the field `Payer`,`PV`,`PR`,`PS` nil, or set a payer address if he wants others pay the gas.
+When a user creates a new transaction, he can set fields `Payer`,`PV`,`PR`,`PS` nil, or set a payer address if he wants others pay the gas.
 The sender signs the transaction with these fields:
 - AccountNonce
 - GasPrice
