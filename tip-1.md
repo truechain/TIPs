@@ -26,8 +26,7 @@ The original transaction take the following form:
 - GasLimit: Maximum amount of gas should be used for this transaction.
 - Recipient: Address of the beneficiary for this transaction.
 - Value: Amount of token to be transacted.
-- Code: Virtual machine code for smart contract deployment.
-- Data: Miscellaneous use.
+- Data: Virtual machine code for smart contract deployment or miscellaneous use.
 - V,R,S: Cryptographic values corresponding to the signature of the transaction, and used to determine the sender of the transaction.
 ```
 Here is the new form:
@@ -37,8 +36,7 @@ Here is the new form:
 - GasLimit: Maximum amount of gas should be used for this transaction.
 - Recipient: Address of the beneficiary for this transaction.
 - Value: Amount of token to be transacted.
-- Code: Virtual machine code for smart contract deployment.
-- Data: Miscellaneous use.
+- Data: Virtual machine code for smart contract deployment or miscellaneous use.
 - Payer: The payer sender wants the transaction to be paid by.
 - V,R,S: Cryptographic values corresponding to the signature of the transaction, and used to determine the sender of the transaction.
 - PV,PR,PS: Cryptographic values corresponding to the signature of the payment, used to determine the payer of the transaction.
@@ -56,7 +54,17 @@ The sender signs the transaction with these fields:
 - Code 
 - Payer 
   
-If the transaction to be paid by himself, send the transaction to a node directly, otherwise, send the transaction to the payer by a offchain message. The payer will sign the transaction's txHash to confirm the payment and send the transaction to a node. 
+If the transaction to be paid by himself, send the transaction to a node directly, otherwise, send the transaction to the payer by a offchain message.
+
+The payer signs the transaction with these fields to confirm the payment:
+- AccountNonce
+- GasPrice
+- GasLimit 
+- Recipient 
+- Value 
+- Code 
+- Sender  
+Then sends the transaction to a node. 
 
 
 ## Validate
@@ -68,7 +76,7 @@ When a node receives a transaction, it will checks whether a transaction is vali
 
 ## Excute
 
-VM excutes this transaction and deducts the transaction fee from payer accout.
+VM excutes the transaction and deducts the transaction fee from payer accout.
 
 # Implementation
 
