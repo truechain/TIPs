@@ -1,7 +1,7 @@
 ---
 tip: 1
 title: transaction gas fee can be paid by third accout
-author: Yang LIU <hyangliu@gmail.com>
+author: Yang LIU <liuyang@truechain.pro>
 created: 2019-01-11
 status: Draft
 type: Standards Track
@@ -19,7 +19,7 @@ The customers can send transactions without enough TRUE, this is friendly to DAp
 # Specification
 
 In order for the mechanism to work, the transaction will add some messages.
-The original transaction take the following form:
+The original transaction takes the following form:
 ```
 - AccountNonce: Number of transactions sent by the sender.
 - GasPrice: Number of Wei to be paid per unit of gas for this transaction.
@@ -44,27 +44,43 @@ Here is the new form:
 
 ## Create
 
-When a user creates a new transaction, he can set fields `Payer`,`PV`,`PR`,`PS` nil, or set a payer address if he wants others pay the gas.
-The sender signs the transaction with these fields:
+### paid by sender
+When a user creates a new transaction, if the transaction to be paid by himself, he can set fields `Payer`,`PV`,`PR`,`PS` nil, send the transaction to a node directly.
+Sign the transaction with these fields:
 - AccountNonce
 - GasPrice
 - GasLimit 
 - Recipient 
 - Value 
-- Code 
-- Payer 
-  
-If the transaction to be paid by himself, send the transaction to a node directly, otherwise, send the transaction to the payer by a offchain message.
+- Code
+This is compatible with original transaction and web3.js can work well for it.
 
-The payer signs the transaction with these fields to confirm the payment:
-- AccountNonce
-- GasPrice
-- GasLimit 
-- Recipient 
-- Value 
-- Code 
-- Sender  
-Then sends the transaction to a node. 
+### paid by a third account
+If the transaction to be paid by a third payer account:
+
+1. the sender signs the transaction with these fields:
+
+   - AccountNonce
+   - GasPrice
+   - GasLimit 
+   - Recipient 
+   - Value 
+   - Code 
+   - Payer 
+
+2. Then send the transaction to the payer by a offchain message.
+
+3. The payer signs the transaction with these fields to confirm the payment:
+
+   - AccountNonce
+   - GasPrice
+   - GasLimit 
+   - Recipient 
+   - Value 
+   - Code 
+   - Sender  
+
+4. Then sends the transaction to a node. 
 
 
 ## Validate
@@ -76,7 +92,7 @@ When a node receives a transaction, it will checks whether a transaction is vali
 
 ## Excute
 
-VM excutes the transaction and deducts the transaction fee from payer accout.
+VM excutes the transaction and deducts the transaction fee from payer account.
 
 # Implementation
 

@@ -1,7 +1,7 @@
 ---
-tip: 1
+tip: 2
 title: Incentive model to support asset-backed token transactions
-author: Eric Zhang <eric@truechain.pro>, Yang Liu <hyangliu@gmail.com>
+author: Eric Zhang <eric@truechain.pro>, Yang Liu <liuyang@truechain.pro>
 created: 2019-01-11
 status: Draft
 type: Standards Track
