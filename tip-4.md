@@ -29,7 +29,7 @@ Instead of coming up with fancy papers, we want to deal with a basic need: bring
 
 A TRUE bridge consists three components - TrueChain smart contract, foreign chain smart contract, and a set of validators. Tokens of any kind -- utility tokens, security tokens and stable coins -- can be locked up into a smart contract on any foreign chain and the same amount of tokens can be minted on TrueChain. 
 
-(./img/truebridge.png)
+![](./img/truebridge.png)
 
 Because of asynchronization between TrueChain and any foreign chains, a set of validators are required to perform validation when “mint” happens. There is a fixed set of validators. Every asset issuer is required to bring at least one external validators maintained by its own foundation or entity. During the “mint” process, validators from TrueBridge and the validator(s) from the issuer will co-perform multi-sig. Asset can only be minted after multi-sig is completed.
 
