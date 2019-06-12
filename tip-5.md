@@ -42,13 +42,14 @@ modified processing mode:
 if len(fruits) == 0 {
 		b.header.FruitsHash = EmptyRootHash
 	} else {
-		b.header.FruitsHash = DeriveSha(Fruits(fruits))
 		if config.IsTIP5(header.Number) {
 			var headers []*SnailHeader
 			for i := 0; i < len(b.fruits); i++ {
 				headers = append(headers, b.fruits[i].header)
 			}
-			b.header.FruitsHash = DeriveSha(Headers(headers))
+			b.header.FruitsHash = DeriveSha(FruitsHeaders(headers))
+		} else {
+			b.header.FruitsHash = DeriveSha(Fruits(fruits))
 		}
 		b.fruits = make([]*SnailBlock, len(fruits))
 		for i := range fruits {
