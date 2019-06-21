@@ -34,8 +34,8 @@ Here is the new form transaction:
 - V,R,S: Cryptographic values corresponding to the signature of the transaction, and used to determine the sender of the transaction.
 - PV,PR,PS: Cryptographic values corresponding to the signature of the payment, used to determine the payer of the transaction.
 ```
-When EVM executes a transaction, Detected that Fee and Payer address is not empty,
-will perform evm.StateDB.SubBalance(Sender, Fee) and evm.StateDB.AddBalance(Payer, Fee)
+When EVM executes a transaction and Detected that Fee and Payer address is not empty,
+will perform evm.StateDB.SubBalance(Sender, Fee) and evm.StateDB.AddBalance(Payer, Fee).
 
 # Implementation
 
